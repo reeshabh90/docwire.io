@@ -52,7 +52,7 @@ Now that we are back, look out for communications from the Docwire team frequent
 - Lessons from real deployments
 - Previews of upcoming features
 
-DocWire is evolving from SDK toward a broader processing framework — and this space will document that journey.
+DocWire is evolving from an SDK toward a broader processing framework — and this space will document that journey.
 ## Explore DocWire
 If you’re building systems that depend on reliable document processing or secure data pipelines, we invite you to explore:
 - [GitHub repository](https://github.com/docwire/docwire)

@@ -28,7 +28,7 @@ We started this journey of evolving Docwire with following ideas as underlying p
 And this is where Docwire shines. Docwire is not simply AI-based or AI-driven, but AI-integrated SDK, which handles your document data processing requirements. It gives the user enough flexibility to process the data across various file formats and integrate it further with AI models of their choice, be it local or through APIs
 
 ## From Files to Pipelines
-Docwire's evolution is not limited to supporting various file formats but integrating more workflows. In its inception, it was a file parsing tool and in its evolution, it is  becoming pipeline construction SDK with various tools at your disposal:<br/>
+Docwire's evolution is not limited to supporting various file formats but integrating more workflows. In its inception, it was a file parsing tool and in its evolution, it is becoming a pipeline construction SDK with various tools at your disposal:<br/>
 <b>Documents → Extraction → Normalization → Transformation → Output</b><br/>
 
 These pipelines can feed search, analytics, knowledge bases, or AI systems, often running entirely within controlled environments.

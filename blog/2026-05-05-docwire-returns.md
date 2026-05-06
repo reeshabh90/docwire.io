@@ -7,7 +7,7 @@ tags: [C++20, technology, document processing, data security]
 
 ![Docwire return](/img/blog/2026-05-05-docwire-returns/DocwireReturn.PNG)
 
-In course of human history, there has not been a time like the present era when Information has become of paramount importance. As James Gleick observes in his book “The Information”, information is what our world runs on: the blood and the fuel, the vital principle. Information pervades all domains of sciences, transforming every branch of knowledge. And Information needs to be inferred in its purest form to act as Intelligence. 
+In the course of human history, there has not been a time like the present era when Information has become of paramount importance. As James Gleick observes in his book “The Information”, information is what our world runs on: the blood and the fuel, the vital principle. Information pervades all domains of science, transforming every branch of knowledge. And Information needs to be inferred in its purest form to act as Intelligence.
 
 Away from the noise, contemplating in silence, working through perseverance, Docwire SDK was being evolved into a infrastructure layer for modern data workflows to sustain the demands of modern day information processing. The journey has been long and arduous but the result has been equally satisfying. And it is time we present to you the much more evolved Dcowire SDK, along with anecdotes about the philosophy behind it and the direction forward.
 

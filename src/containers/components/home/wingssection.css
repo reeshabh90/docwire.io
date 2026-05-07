@@ -1,54 +1,80 @@
+/* ─── Wings Section ─────────────────────────────────────────────────────── */
+
 .docwire__wingssection-container {
     padding-top: 100px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
+    padding-bottom: 60px;
 
-.docwire__wingssection-container_text {
-    width: 50%;
+    /* Centre everything in a column */
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    /* Constrain the text block width for comfortable reading */
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Wings image sits above the heading */
+.docwire__wingssection-wings-img {
+    width: 60%;
+    max-width: 380px;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.docwire__wingssection-heading {
+    margin-bottom: 1.25rem;
+}
+
+.docwire__wingssection-body {
+    margin-bottom: 2rem;
+    /* Override the global left-align; keep it centred here */
+    text-align: center;
+}
+
+/* CTA row */
+.docwire__wingssection-ctas {
     display: flex;
-    padding-right: 5%;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.docwire__wingssection-container_text h2 {
-    margin-bottom: 24px;
+.docwire__wingssection-cta-secondary {
+    background-color: transparent;
+    color: var(--color-link);
+    border: 2px solid var(--color-link);
 }
 
-.docwire__wingssection-container_text p {
-    margin-bottom: 0;
+.docwire__wingssection-cta-secondary:hover {
+    background-color: var(--color-link);
+    color: var(--color-bg);
 }
 
-.docwire__wingssection-container_wings {
-    width: 50%;
-}
-
-.docwire__wingssection-container_wings img {
-    width: 100%;
-}
-
-
-@media screen and (max-width: 1250px) {
-    .docwire__wingssection-container_text {
-        width: 60%;
-    }
-    .docwire__wingssection-container_wings {
-        width: 40%;
-    }
-}
+/* ─── Responsive ────────────────────────────────────────────────────────── */
 
 @media screen and (max-width: 750px) {
     .docwire__wingssection-container {
+        padding-top: 60px;
+        padding-bottom: 40px;
+        /* Remove the width override from .section so padding still applies */
         width: 100%;
+    }
+
+    .docwire__wingssection-wings-img {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .docwire__wingssection-wings-img {
+        width: 80%;
+    }
+
+    .docwire__wingssection-ctas {
         flex-direction: column;
-    }
-    .docwire__wingssection-container_text {
-        width: 100%;
-        padding-left: 10vw;
-        padding-right: 10vw;
-    }
-    .docwire__wingssection-container_wings {
-        display: none;
+        align-items: center;
     }
 }

@@ -26,7 +26,7 @@ export default function Home() {
         <SupportedFormats/>
         <UnlockThePower/>
         <WingsSection/>
-        <CTA/>
+        {/* <CTA/> */}
         {/* Footer is handled by Docusaurus Layout */}
       </main>
     </Layout>

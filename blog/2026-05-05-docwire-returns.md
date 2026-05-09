@@ -22,7 +22,7 @@ We started this journey of evolving Docwire with following ideas as underlying p
 - Deeper involvement in client projects as core processing layer.
 - Easy integrations with local LLM runtimes and AI pipelines. 
 
-💡And with each execution, one insight (or inutition) became clear:<br/>
+💡And with each execution, one insight (or intuition) became clear:<br/>
 <u>*The need for secure and reliable data processing on local premises is increasing in the LLM era.*</u>
 
 And this is where Docwire shines. Docwire is not simply AI-based or AI-driven, but AI-integrated SDK, which handles your document data processing requirements. It gives the user enough flexibility to process the data across various file formats and integrate it further with AI models of their choice, be it local or through APIs

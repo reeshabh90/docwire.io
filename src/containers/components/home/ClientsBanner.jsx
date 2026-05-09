@@ -1,4 +1,4 @@
-import './clientsBanner.css';
+import './clientsbanner.css';
 import React from 'react';
 import HarpoLogo from '../../../assets/Harpo logo.png'
 import TausightLogo from '../../../assets/Tausight.png'

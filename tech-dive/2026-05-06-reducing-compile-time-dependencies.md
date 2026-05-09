@@ -5,7 +5,7 @@ tags: [C++20, compile time, optimization]
 ---
 
 ## Introduction
-[Docwire](https://docwire.io/) is an award-winning modern data processing SDK built in C++20. It supports nearly 100 data formats, including email boxes and OCR in more than 100 languages. Hence, it is obvious that compiling and processing speed is of utmost importance. Over the years, the Docwire SDK codebase has grown multi-fold, supporting various document formats, yet the philosophies of C++ development have always been at the core of its architecture. In this blog post, we discuss our adaptation of the PIML idiom, which has greatly helped us reduce not only compile-time dependencies but also maintain a healthy encapsulation level over implementation details. However, to lay bare the conceptual thinking behind this adaptation, we do not want to present the actual implementation of the PIMPL idiom directly; rather, we want the reader to understand the intuition behind it. Once we have covered the necessary ground, the strange-looking code will automatically make sense. So bear with us!
+ In this blog post, we discuss [Docwire's](https://docwire.io/) adaptation of the PIMPL idiom, which has greatly helped us reduce not only compile-time dependencies but also maintain a healthy encapsulation level over implementation details. However, to lay bare the conceptual thinking behind this adaptation, we do not want to present the actual implementation of the PIMPL idiom directly; rather, we want the reader to understand the intuition behind it. Once we have covered the necessary ground, the strange-looking code will automatically make sense. So bear with us!
 
 ## Addressing Dependencies in C++
 Managing dependencies well has always been the philosophy of C++ design to ensure solid code. And the reason being C++’s greatest strength is that it supports two powerful methods of abstraction: object-oriented programming and generic programming, which help manage dependencies and complexities (Sutter, 1999, #). Usually, when we discuss dependencies concerning code, we often talk about run-time dependencies like class interaction, but here, our concern lies with managing compile-time dependencies. 
@@ -13,7 +13,6 @@ Managing dependencies well has always been the philosophy of C++ design to ensur
 Have a look at the minimalistic code example below:
 
 ```cpp
-`
 //--------<d.h>---------------------
 class D {
 public:
@@ -43,7 +42,7 @@ void Y::someImpl() { std::cout << d_.num << std::endl; }
 ------------------------------
 `
 ```
-The file to notice here is`y.h` since this is the file that will be included in some main.cpp. Usually, programmers #include many more headers than necessary, which unfortunately degrades build times, especially when a popular header file includes too many other headers. Ours above is a simplistic one, yet enough to convey the message. Can we somehow remove any header from this file while still having our code compile and run successfully?
+The file to notice here is `y.h` since this is the file that will be included in some main.cpp. Usually, programmers #include many more headers than necessary, which unfortunately degrades build times, especially when a popular header file includes too many other headers. Ours above is a simplistic one, yet enough to convey the message. Can we somehow remove any header from this file while still having our code compile and run successfully?
 
 When we review the code closely, we see that a certain D appears as a private data member of our class Y as well as a parameter inside its constructor. In C++, we can easily encapsulate the private parts of a class from unauthorized access; however, it requires a bit more work to encapsulate dependencies on a class's private parts, due to the header approach borrowed from the C-Language. A genuine argument may be raised that a client code does not need to care about access to private members of a class; however,  since the privates are visible in the header, the client code does have to depend upon any types they mention.
 
@@ -150,7 +149,7 @@ void Y::notify() {// custom implementation}
 ```
 👀Look closely, and you will find that our class Y has now been made a polymorphic base class. Earlier, the compiler was aware of its definite behavior, but now it acts as an extensible interface. Now, if there is a derived class from our class Y, the compiler does not know whether the actual object is of type Y or its derived type. The call to the virtual function will be decided at run time. 
 
-But more importantly, the implementation `YImpl`does not depend on derived interface types. It is delegating the policy back to the interface Y via owner->notify(). It is still loosely coupled and can handle private implementation details with ease. So, how does the memory layout look for class Y now, and what happens when `run` is executed?
+But more importantly, the implementation `YImpl` does not depend on derived interface types. It is delegating the policy back to the interface Y via owner->notify(). It is still loosely coupled and can handle private implementation details with ease. So, how does the memory layout look for class Y now, and what happens when `run` is executed?
 
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wgg4eftizyadfky85zdn.PNG)
 
@@ -256,7 +255,7 @@ public:
 “Template code is generated only when a template is instantiated, and instantiation happens where the full definition is visible. Templates are compiled on demand, not beforehand.”
 
 C++ compiles `.cpp` files independently, and linking is done at a later stage. Suppose a `main.cpp` is making use of our existing structure. It instantiates a derived class of Y, passes necessary parameters, and calls upon required member functions. But, the problem is that when it gets compiled, the compiler will see only:
-```
+```cpp
 template<typename T>
 class Y;
 ```
@@ -433,15 +432,17 @@ void Y<Derived>::notify() {
 }
 ```
 However, to make the `YImpl` owner aware, we have introduced a problem. We introduced Derived& owner_; inside the implementation, which causes potential pitfalls when move semantics come to the picture. What happens when a piece of code tries to move the owner itself?
-`DerivedCL a(d);
-DerivedCL b = std::move(a);`
+```cpp
 
+DerivedCL a(d);
+DerivedCL b = std::move(a);
+```
 After the move semantics play, our implementation will be left with a null-pointer. Hence, a guarantee needs to be provided that once the owner is moved, the owner's reference is updated inside the implementation. 
 
 The constraint we have currently is that our implementation of the PIMPL idiom, YIMPL, remains unaware when a move happens. This event occurs outside its scope. Hence, it needs to be communicated once the owner detects a move operation. Moreover, there is one more subtlety we need to be aware of. We are storing the owner’s reference Derived& owner_; inside our implementation, and references cannot be rebound unless they are of type `std::reference_wrapper<T>`.
 
 ```cpp
-//---Updated <y.h> with owner's reference updation --------
+//---Updated <y.h> with owner's reference update --------
 #pragma once
 
 #include <iostream>
@@ -531,7 +532,7 @@ template <typename Derived> void Y<Derived>::someImpl() {
 
 ```
 
-In the updated code above, we have introduced a communication channel to allow the owner to communicate lifecycle changes to the `YImpl`. The owner now no longer depends on the implementation layout. Rather than holding `std::unique_ptr<YImpl>`, owner now holds `std::unique_ptr<impl_base>`. 
+In the updated code above, we have introduced a communication channel to allow the owner to communicate lifecycle changes to the `YImpl`. The owner now no longer depends on the implementation layout. Rather than holding `std::unique_ptr<YImpl>`, the owner now holds `std::unique_ptr<impl_base>`. 
 
 An argument can be made that virtualization is back in our code, but this time we are not virtualizing behavior, but passing on a communication at run time, and this event is also not as frequent as it happens only when move semantics is at play. 
 
@@ -540,7 +541,7 @@ An argument can be made that virtualization is back in our code, but this time w
 🎯Our final goal should be a reusable infrastructure where any class T automatically gets a PIMPL, and optionally allows the implementation to call back into its owner safely (even after move semantics). 
 
 👉Hence, the final leap, and we present you the Docwire adaptation of the PIMPL idiom.
-The Final Leap: Docwire’s PIMPL adaptation
+## The Final Leap: Docwire’s PIMPL adaptation
 What we have developed so far is not a feature of a specific class, but an improved capability of a class. And this capability should be enabled for all other classes in the framework. 
 ©️Following is the actual code in the Docwire framework for the PIMPL adaptation:
 
@@ -653,11 +654,9 @@ private:
 } // namespace docwire
 
 #endif
-
-
 ```
- We start with the intent of making PIMPL usable and introduce a specialization:
-```
+We start with the intent of making PIMPL usable and introduce a specialization:
+```cpp
 template<class T>
 class with_pimpl;
 ---------------------------
@@ -674,7 +673,7 @@ The derived class gains a full PIMPL system. The class with_pimpl comes with a c
 
 This is the type definition that resolves the concrete implementation type and is returned by create_impl. However, when we store an implementation object inside the with_pimpl class, we store it via a base-class pointer: `std::unique_ptr<pimpl_impl_base>` m_impl; rather than `pimpl_impl<T>`. Had it been the latter case, then every translation unit, including the header, must always be aware of `pimpl_impl<T>`, which beats the purpose of the entire exercise. Any change in implementation would cause the whole code to compile. As a workaround, we define:
 
-```
+```cpp
 struct pimpl_impl_base
 {
 	virtual ~pimpl_impl_base() = default;
@@ -685,7 +684,7 @@ struct pimpl_impl_base
 ```
 
 And while instantiating the template through a class T in our `.cpp` file elsewhere, we write:
-```
+```cpp
 template<>
 struct pimpl_impl<T> : pimpl_impl_base
 {
@@ -704,7 +703,7 @@ C++ performs template instantiation whenever the compiler wants to check correct
 The definitions of entities generated by a template are not limited to a single location in the source code. The location of the template, the location where the template is used, and the locations where the template arguments are defined all play a role in the meaning of the entity. When a C++ compiler encounters the use of a template specialization, it will create that specialization by substituting the required arguments for the template parameters. This implies that the compiler often needs access to the full definition of the template and some of its members at the point of use (Vandevoorde et al., 2017, #).
 
 👀Look at the code above closely, especially the following segment:
-```
+```cpp
 template <typename T>
 class with_pimpl
 {
@@ -715,14 +714,14 @@ using impl_type = pimpl_impl<T>;
 };
 ```
 Here, pimpl_impl is only forward declared. The real implementation lives elsewhere. When the compiler is compiling the header, it will come across the following code segment:
-```
+```cpp
 impl_type& impl() { return *static_cast<impl_type*>(m_impl.get()); 
 ```
 At this juncture, the compiler must verify the validity of the cast and dereferencing and check whether the return expression is well-formed or not. And to do this validation, it may need semantic information about `pimpl_impl<T>`. When the compiler encounters the inline definition of impl(), it may instantiate this member function while forming `pimpl_impl<T>`.
 🔑Here, impl_type might be incomplete, since a complete definition of `pimpl_impl<T>` may not have been provided to the compiler yet. In such cases, operations such as casting and dereferencing can become ill-formed and break compilation.
 In C++, templates follow Point-of-Instantiation rules, which direct a compiler to instantiate member functions as soon as the class template is instantiated, not when called. This is where ‘Deferred Instantiation’ comes to help. We convert a normal member function into a member function template, and in C++, Function templates are instantiated ONLY when used. 
 
-👉In short, the PIMPL idiom is a tradeoff between compile-time scalability and memory locality. For our usecase, the Docwire being an SDK, we decided to weigh towards scalability. If it had been a performance-critical application, then memory locality would have been preferred. Having said that, this does not mean we do not care about performance! 😈
+👉In short, the PIMPL idiom is a tradeoff between compile-time scalability and memory locality. For our use case, the Docwire being an SDK, we decided to weigh towards scalability. If it had been a performance-critical application, then memory locality would have been preferred. Having said that, this does not mean we do not care about performance! 😈
 
 🔗[Docwire Code Repo Link](https://github.com/docwire/docwire)
 

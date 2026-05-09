@@ -8,7 +8,7 @@ import DataSecurity from '../../../assets/on-premise-security.png';
 const slides = [
     {
         image: DataSecurity,
-        alt: "DocWire extracting structured text from PDF documents",
+        alt: "On-premise document processing for data security",
         label: "On Premise Processing for Data Security"
     },
     {

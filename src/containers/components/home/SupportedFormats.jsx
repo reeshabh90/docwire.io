@@ -57,7 +57,7 @@ function SupportedFormats() {
                 {/* Visible cards */}
                 <div className="docwire__formats-carousel_track">
                     {visibleCards.map((group, i) => (
-                        <div key={`${startIndex}-${i}`} className="docwire__format-group-card_container">
+                        <div key={group.groupName} className="docwire__format-group-card_container">
                             <div className="docwire__format-group-card card">
                                 <div className="docwire__format-icon">
                                     <group.icon />
@@ -100,7 +100,7 @@ function SupportedFormats() {
 
             {/* Counter */}
             <p className="docwire__formats-counter" aria-live="polite">
-                {startIndex + 1} – {Math.min(startIndex + VISIBLE, total)} of {total} format groups
+                {startIndex + 1} – {((startIndex + VISIBLE - 1) % total) + 1} of {total} format groups
             </p>
         </div>
     );

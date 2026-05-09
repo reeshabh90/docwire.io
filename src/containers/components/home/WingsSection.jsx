@@ -12,11 +12,10 @@ function WingsSection() {
                 className="docwire__wingssection-wings-img"
             />
             <h2 className="docwire__wingssection-heading">
-                Docwire SDK is a light-weight, secure C++ text miner optimized for any tech stack
+                Docwire SDK is a light-weight, secure C++ text miner optimized for any tech stack.
             </h2>
             <p className="docwire__wingssection-body text-lead">
-                Docwire SDK is a light-weight, secure C++ text miner that is optimized for any tech stack. With our
-                powerful libraries, you can implement lightning-fast text extraction that seamlessly blends with your
+                Using powerful libraries wired with Docwire, you can implement lightning-fast text extraction that seamlessly blends with your
                 current build, saving both time and money. Our C++ libraries are designed to handle any file format,
                 including docx, PDF, and pst/ost files, making it easy to extract text from even the most complex
                 documents.

@@ -82,7 +82,6 @@
     height: 36px;
     width: auto;
     display: block;
-
     filter: grayscale(1) brightness(0.65) contrast(1.1);
     transition: filter 0.25s ease;
 }
@@ -107,7 +106,6 @@ html[data-theme='dark'] .docwire__clients-banner__item:hover img {
     font-weight: 700;
     white-space: nowrap;
     letter-spacing: 0.03em;
-
     color: var(--brand-black);
     transition: color 0.25s ease;
 }

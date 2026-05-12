@@ -536,7 +536,7 @@ In the updated code above, we have introduced a communication channel to allow t
 
 An argument can be made that virtualization is back in our code, but this time we are not virtualizing behavior, but passing on a communication at run time, and this event is also not as frequent as it happens only when move semantics is at play. 
 
-🚌So far, we have covered a lot of ground, and we have been rewarded with move safety, desired PIMPL implementation with CRTP-based static polymorphism to reduce run-time dependency. However, the implementation so far has been specifically for one class. In a large framework, every other class in need of such features must then implement it on its own. We must make this implementation generic. 
+In the updated code above, we have introduced a communication channel to allow the owner to communicate lifecycle changes to the `YImpl`. The owner now no longer depends on the implementation layout. Rather than holding `std::unique_ptr<YImpl>`, the owner now holds `std::unique_ptr<impl_base>`.
 
 🎯Our final goal should be a reusable infrastructure where any class T automatically gets a PIMPL, and optionally allows the implementation to call back into its owner safely (even after move semantics). 
 

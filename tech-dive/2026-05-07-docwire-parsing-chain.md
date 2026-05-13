@@ -5,7 +5,7 @@ tags: [C++20, compile time, optimization]
 ---
 
 ## Introduction
-[Docwire's](https://docwire.io/) is a powerful data extraction tool, developed on Modern C++, that converts text from nearly all known file formats into searchable and editable data. Powered by the Tesseract OCR engine, DocWire is a solution for digitizing text from many image types, MS Office files, e-mails, or e-mail attachments. DocWire outputs data to plain text that may be transmitted for further processing.
+[Docwire](https://docwire.io/) is a powerful data extraction tool, developed on Modern C++, that converts text from nearly all known file formats into searchable and editable data. Powered by the Tesseract OCR engine, DocWire is a solution for digitizing text from many image types, MS Office files, e-mails, or e-mail attachments. DocWire outputs data to plain text that may be transmitted for further processing.
 
 One of the interesting aspects of Docwire SDK is its ability to process documents locally (or even make an OpenAI API call) through a series of customizable steps that can be added or removed as per requirements. For example, consider the following code example ():
 ```cpp
@@ -17,7 +17,7 @@ In the above pipeline processing, a document is being picked, its content type i
 std::filesystem::path("data_processing_definition.doc") | content_type::detector{} | office_formats_parser{} | PlainTextExporter() | local_ai::model_chain_element("Translate to spanish:\n\n") | out_stream;
 ```
 
-🔗Docwire Code examples can be accessed at this [link](https://docwire.readthedocs.io/en/latest/examples.html).
+🔗Explore Docwire code examples in the [official examples documentation](https://docwire.readthedocs.io/en/latest/examples.html).
 
 Now, we have added a local model to translate the text in the document to Spanish and then stream the output. It seems as if the product is moving on a conveyor belt, and necessary customizations can be applied, such that output of the previous step acts as an input of the next step, exactly how a pipeline chain would work. In software terms, this emulates exactly how the Unix pipe operator `|` works in the terminal.
 
@@ -46,7 +46,7 @@ struct EndMessage : Message {};
 
 We have defined a base entity and various types of such entities, and based on the types, the parsing steps will decide how to act. 
 
-*_Note_*: <u>In C++, classes are nothing but structs. I have taken the approach of structs here, as the intention is to keep the implementation short and minimal.</u>
+*_Note_*: <u>In C++, classes are primarily structs. I have taken the approach of structs here, as the intention is to keep the implementation short and minimal.</u>
 
 The intended behavior is as follows:
 

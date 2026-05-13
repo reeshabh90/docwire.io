@@ -12,7 +12,7 @@ In course of human history, there has not been a time like the present era when 
 Away from the noise, contemplating in silence, working through perseverance, Docwire SDK was being evolved into an infrastructure layer for modern data workflows to sustain the demands of modern day information processing. The journey has been long and arduous but the result has been equally satisfying. And it is time we present to you the much more evolved Docwire SDK, along with anecdotes about the philosophy behind it and the direction forward.
 <!-- truncate -->
 ## The Invisible Engine
-Every interface we interact with is a surface level reality, but the entity itself is supported by an engine which remains invisible. Same is true for the virtual world. Some of the most important softwares are never seen. When you tap a payment card or rely on an embedded medical device, complex logic runs quietly in the background. Document processing plays a similar role in many systems — critical, yet hidden. And Docwire has been designed to serve exactly the same purpose. An engine that extracts, normalizes, and transforms unstructured documents into structured, usable data — locally, securely and reliably. And it still adheres to its “Plug and Play” philosophy. Developers integrate it once and it simply works! Only better this time, with support for more file formats and a fluent ingestion layer for building data processing pipeline.
+Every interface we interact with is a surface level reality, but the entity itself is supported by an engine which remains invisible. Same is true for the virtual world. Some of the most important software is never seen. When you tap a payment card or rely on an embedded medical device, complex logic runs quietly in the background. Document processing plays a similar role in many systems — critical, yet hidden. And Docwire has been designed to serve exactly the same purpose. An engine that extracts, normalizes, and transforms unstructured documents into structured, usable data — locally, securely and reliably. And it still adheres to its “Plug and Play” philosophy. Developers integrate it once and it simply works! Only better this time, with support for more file formats and a fluent ingestion layer for building data processing pipeline.
 
 
 ## What Changed since 2023
@@ -28,7 +28,7 @@ We started this journey of evolving Docwire with following ideas as underlying p
 And this is where Docwire shines. Docwire is not simply AI-based or AI-driven, but AI-integrated SDK, which handles your document data processing requirements. It gives the user enough flexibility to process the data across various file formats and integrate it further with AI models of their choice, be it local or through APIs.
 
 ## From Files to Pipelines
-Docwire's evolution is not limited to supporting various file formats but integrating more workflows. In its inception, it was a file parsing tool and in its evolution, it is becoming pipeline construction SDK with various tools at your disposal:<br/>
+DocWire's evolution is not limited to supporting various file formats but integrating more workflows. In its inception, it was a file parsing tool and in its evolution, it is becoming pipeline construction SDK with various tools at your disposal:<br/>
 <b>Documents → Extraction → Normalization → Transformation → Output</b><br/>
 
 These pipelines can feed search, analytics, knowledge bases, or AI systems, often running entirely within controlled environments.

@@ -40,7 +40,6 @@ Y::~Y() = default;
 
 void Y::someImpl() { std::cout << d_.num << std::endl; }
 ------------------------------
-`
 ```
 The file to notice here is `y.h` since this is the file that will be included in some main.cpp. Usually, programmers #include many more headers than necessary, which unfortunately degrades build times, especially when a popular header file includes too many other headers. Ours above is a simplistic one, yet enough to convey the message. Can we somehow remove any header from this file while still having our code compile and run successfully?
 

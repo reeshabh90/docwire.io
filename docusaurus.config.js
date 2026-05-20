@@ -1,6 +1,6 @@
 // @ts-check
 
-const {themes} = require('prism-react-renderer');
+const { themes } = require('prism-react-renderer');
 const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.dracula;
 
@@ -79,6 +79,21 @@ const config = {
       }),
     ],
   ],
+  plugins: [
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'tech-dive',
+        routeBasePath: 'tech-dive',
+        path: './tech-dive',
+        showReadingTime: true,
+        beforeDefaultRemarkPlugins: [
+          require('./src/plugins/remark-youtube'),
+          require('./src/plugins/remark-static-images'),
+        ],
+      },
+    ],
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -96,8 +111,8 @@ const config = {
           src: 'img/logoDocWire.JPG',
         },
         items: [
-          {to: '/about-us', label: 'About Us', position: 'left'},
-          {to: '/showcases', label: 'Showcases', position: 'left'},
+          { to: '/about-us', label: 'About Us', position: 'left' },
+          { to: '/showcases', label: 'Showcases', position: 'left' },
           {
             href: 'https://docwire.readthedocs.io/',
             position: 'left',
@@ -108,8 +123,9 @@ const config = {
             label: 'Download',
             position: 'left',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {to: '/contact-us', label: 'Contact Us', position: 'right', className: 'button-pill nav-cta'},
+          { to: '/blog', label: 'Blog', position: 'left' },
+          { to: '/tech-dive', label: 'Tech Dive', position: 'left' },
+          { to: '/contact-us', label: 'Contact Us', position: 'right', className: 'button-pill nav-cta' },
           {
             href: 'https://github.com/docwire/docwire',
             label: 'GitHub',

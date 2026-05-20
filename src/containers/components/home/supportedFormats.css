@@ -1,3 +1,5 @@
+/* ─── Supported Formats Section ─────────────────────────────────────────── */
+
 .docwire__supported-formats-container {
     flex-direction: column;
     align-items: center;
@@ -9,20 +11,64 @@
 .docwire__supported-formats_header {
     text-align: center;
     margin-bottom: 60px;
-    width: 60%;
+    width: 65%;
+    max-width: 640px;
 }
 
 .docwire__supported-formats_header p {
     margin-top: 1em;
 }
 
-.docwire__formats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+/* ── Carousel wrapper ── */
+.docwire__formats-carousel {
     width: 100%;
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
 }
 
+/* Arrow buttons */
+.docwire__formats-arrow {
+    flex-shrink: 0;
+    width: 44px;
+    background: transparent;
+    border: 2px solid var(--brand-violet);
+    border-radius: 50%;
+    color: var(--brand-violet);
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    padding: 0;
+    align-self: center;
+}
+
+.docwire__formats-arrow:hover {
+    background: var(--brand-violet);
+    color: var(--brand-white);
+    transform: scale(1.08);
+}
+
+/* ── Visible card track ── */
+.docwire__formats-carousel_track {
+    flex: 1;
+    display: grid;
+    /* 3 columns desktop; auto-fit collapses gracefully on narrower viewports */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    /* Animate the card swap with a quick fade-in */
+    animation: formatsFadeIn 0.35s ease;
+}
+
+@keyframes formatsFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Gradient border wrapper */
 .docwire__format-group-card_container {
     background-image: var(--gradient-bar);
     border-radius: 12px;
@@ -30,6 +76,7 @@
     height: 100%;
 }
 
+/* Inner card */
 .docwire__format-group-card {
     width: 100%;
     height: 100%;
@@ -61,9 +108,58 @@
 
 .docwire__format-group-description {
     color: var(--color-text);
-    margin-top: auto; /* Pushes description to the bottom */
-    padding-top: 1em; /* space above description */
+    margin-top: auto;
+    padding-top: 1em;
     margin-bottom: 0;
+}
+
+/* ── Dot indicators ── */
+.docwire__formats-dots {
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.docwire__formats-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-surface);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.docwire__formats-dot.active {
+    background: var(--brand-violet);
+    transform: scale(1.3);
+}
+
+.docwire__formats-dot:hover {
+    background: var(--brand-orange);
+}
+
+/* Counter label */
+.docwire__formats-counter {
+    margin-top: 10px;
+    font-size: 0.875rem;
+    color: var(--color-subtext);
+    margin-bottom: 0;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 900px) {
+    .docwire__supported-formats_header {
+        width: 80%;
+    }
+    /* Show 2 cards on tablet */
+    .docwire__formats-carousel_track {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media screen and (max-width: 750px) {
@@ -73,5 +169,13 @@
     }
     .docwire__supported-formats_header {
         width: 100%;
+    }
+    /* Show 1 card on mobile */
+    .docwire__formats-carousel_track {
+        grid-template-columns: 1fr;
+    }
+    .docwire__formats-arrow {
+        width: 36px;
+        font-size: 1.4rem;
     }
 }

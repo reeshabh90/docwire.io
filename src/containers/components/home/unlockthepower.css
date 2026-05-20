@@ -1,3 +1,5 @@
+/* ─── Unlock the Power Section ──────────────────────────────────────────── */
+
 .docwire__unlockthepower-content {
     flex-direction: column;
     align-items: center;
@@ -11,26 +13,34 @@
 }
 
 .docwire__unlockthepower-content_header {
+    /* Keep at 50% on desktop so it reads as a punchy centred headline */
     width: 50%;
     margin-bottom: 24px;
     text-align: center;
 }
 
-.docwire__unlockthepower-content_section {
-    width: 70%;
-    margin-bottom: 100px;
+/* Body paragraph: narrower than 70% to avoid very long lines */
+.docwire__unlockthepower-content_body {
+    width: 60%;
+    max-width: 680px;
+    margin-bottom: 56px;
+    text-align: center;
 }
 
+/* Three-card row */
 .docwire__unlockthepower-content_infocard_section {
-    justify-content: space-between;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
 }
 
 .docwire__unlockthepower-content_infocard_single {
-    width: 32%;
+    flex: 1 1 0;
     background-image: var(--gradient-bar);
     border-radius: 12px;
     padding: 2px;
+    min-width: 0; /* prevent flex blowout */
 }
 
 .docwire__unlockthepower-content_infocard_content {
@@ -57,33 +67,36 @@
 
 .infocard_paragraph {
     margin-bottom: 0;
-    margin-top: auto; /* Pushes paragraph to the bottom */
-    padding-top: 1em; /* Ensures space between header and text */
+    margin-top: auto;
+    padding-top: 1em;
 }
 
+/* ─── Responsive ────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 900px) {
+    .docwire__unlockthepower-content_header {
+        width: 70%;
+    }
+    .docwire__unlockthepower-content_body {
+        width: 80%;
+    }
+}
 
 @media screen and (max-width: 750px) {
-    .docwire__unlockthepower-content {
-        width: 100%;
-        padding-left: 10vw;
-        padding-right: 10vw;
-    }
-
-    .docwire__unlockthepower-content_section {
-        width: 100%;
-    }
-
     .docwire__unlockthepower-content_header {
+        width: 100%;
+    }
+
+    .docwire__unlockthepower-content_body {
         width: 100%;
     }
 
     .docwire__unlockthepower-content_infocard_section {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
     }
 
     .docwire__unlockthepower-content_infocard_single {
         width: 100%;
-        margin-bottom: 1.5rem;
     }
 }

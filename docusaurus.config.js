@@ -56,8 +56,6 @@ const config = {
         docs: false,
         blog: {
           showReadingTime: true,
-          editUrl:
-            `https://github.com/${organizationName}/${projectName}/tree/${currentBranch}/`,
           beforeDefaultRemarkPlugins: [
             require('./src/plugins/remark-youtube'),
             require('./src/plugins/remark-static-images'),

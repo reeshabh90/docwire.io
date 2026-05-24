@@ -56,8 +56,6 @@ const config = {
         docs: false,
         blog: {
           showReadingTime: true,
-          editUrl:
-            `https://github.com/${organizationName}/${projectName}/tree/${currentBranch}/`,
           beforeDefaultRemarkPlugins: [
             require('./src/plugins/remark-youtube'),
             require('./src/plugins/remark-static-images'),
@@ -111,24 +109,13 @@ const config = {
           src: 'img/logoDocWire.JPG',
         },
         items: [
-          { to: '/about-us', label: 'About Us', position: 'left' },
           { to: '/showcases', label: 'Showcases', position: 'left' },
-          {
-            href: 'https://docwire.readthedocs.io/',
-            position: 'left',
-            label: 'Documentation',
-          },
-          {
-            href: 'https://github.com/docwire/docwire/releases',
-            label: 'Download',
-            position: 'left',
-          },
           { to: '/blog', label: 'Blog', position: 'left' },
           { to: '/tech-dive', label: 'Tech Dive', position: 'left' },
-          { to: '/contact-us', label: 'Contact Us', position: 'right', className: 'button-pill nav-cta' },
+          { to: '/about-us', label: 'About Us', position: 'right', className: 'button-pill nav-cta' },
           {
-            href: 'https://github.com/docwire/docwire',
-            label: 'GitHub',
+            href: 'https://docwire.readthedocs.io/',
+            label: 'Get Started',
             position: 'right',
           },
         ],
@@ -136,7 +123,6 @@ const config = {
       footer: {
         links: [
           {
-            title: 'Legal',
             items: [
               {
                 label: 'Privacy Policy',
@@ -145,6 +131,14 @@ const config = {
               {
                 label: 'Terms of Use',
                 to: '/terms-of-service',
+              },
+              {
+                label: 'Contact Us',
+                to: '/contact-us',
+              },
+              {
+                label: 'GitHub',
+                href: 'https://github.com/docwire/docwire',
               },
             ],
           },

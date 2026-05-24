@@ -21,11 +21,11 @@ const slides = [
 function HeroSlideshow() {
     const [active, setActive] = useState(0);
 
-    // Auto slideshow
     useEffect(() => {
         const timer = setInterval(() => {
             setActive((prev) => (prev + 1) % slides.length);
         }, 4000);
+
         return () => clearInterval(timer);
     }, []);
 
@@ -38,8 +38,8 @@ function HeroSlideshow() {
                         className={`docwire__hero-slide ${i === active ? 'active' : ''}`}
                         aria-hidden={i !== active}
                     >
-                        <img 
-                            src={slide.image} 
+                        <img
+                            src={slide.image}
                             alt={slide.alt}
                             className="docwire__hero-slide-image"
                         />
@@ -47,12 +47,10 @@ function HeroSlideshow() {
                 ))}
             </div>
 
-            {/* Caption */}
             <p className="docwire__hero-slide-caption">
                 {slides[active].label}
             </p>
 
-            {/* Dots */}
             <div className="docwire__hero-slideshow_dots">
                 {slides.map((_, i) => (
                     <button
@@ -70,16 +68,21 @@ function HeroSlideshow() {
 function HomeHeader() {
     return (
         <div className="docwire__header section">
+
             <h1 className="docwire__header-h1 text-display">
                 DocWire SDK: Award-winning modern data processing in C++20
             </h1>
 
             <div className="docwire__header-content">
+
                 <div className="docwire__header-text">
+
                     <p className="docwire__header-description">
-                        DocWire is a powerful data extraction tool that converts unstructured documents 
-                        into searchable and editable data. Powered by Tesseract OCR, it handles PDFs, 
-                        images, MS Office files, emails, and attachments with high accuracy and performance.
+                        DocWire is a powerful data extraction tool that converts
+                        unstructured documents into searchable and editable data.
+                        Powered by Tesseract OCR, it handles PDFs, images,
+                        MS Office files, emails, and attachments with high
+                        accuracy and performance.
                     </p>
 
                     <div className="docwire__header-ctas">
@@ -91,13 +94,19 @@ function HomeHeader() {
                         >
                             Download SDK
                         </a>
-                        <Link to="/contact-us" className="button-pill docwire__header-cta-secondary">
+
+                        <Link
+                            to="/contact-us"
+                            className="button-pill docwire__header-cta-secondary"
+                        >
                             Contact Us
                         </Link>
                     </div>
+
                 </div>
 
                 <HeroSlideshow />
+
             </div>
         </div>
     );

@@ -1,0 +1,165 @@
+/* ─── Section CTA: Start with the problem. ─────────────────────────────────── */
+
+/*
+  Full-width tinted band — same pattern as S4 so it reads as a deliberate
+  visual pause before the footer, not just another content section.
+*/
+
+.scta__band {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: 0;
+
+    background-color: var(--color-surface);
+
+    /* Top gradient separator — mirrors S4 */
+    border-top: 1px solid transparent;
+    background-image:
+        linear-gradient(var(--color-surface), var(--color-surface)),
+        var(--gradient-bar);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    padding-top: 8vh;
+    padding-bottom: 8vh;
+}
+
+/* ── Inner container ─────────────────────────────────────────────────────────── */
+
+.scta__section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* ── Heading ─────────────────────────────────────────────────────────────────── */
+
+.scta__header {
+    margin-bottom: 2rem;
+}
+
+.scta__title {
+    margin-bottom: 0;
+    max-width: 22ch;
+}
+
+/* ── Body copy ───────────────────────────────────────────────────────────────── */
+
+.scta__body {
+    max-width: 68ch;
+    margin-bottom: 0;
+}
+
+.scta__body p {
+    font-size: 1rem;
+    line-height: 1.72;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.scta__body p:last-child {
+    margin-bottom: 0;
+}
+
+/* ── CTA cluster ─────────────────────────────────────────────────────────────── */
+
+.scta__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.875rem;
+    margin-top: 2.5rem;
+}
+
+/* Primary — filled, brand violet (inherits .button-pill defaults) */
+.scta__cta-primary {
+    /* uses default button-pill bg/text */
+}
+
+/* Secondary — outline */
+.scta__cta-secondary {
+    background-color: transparent;
+    color: var(--color-link);
+    border: 2px solid var(--color-link);
+}
+
+.scta__cta-secondary:hover {
+    background-color: var(--color-link);
+    color: var(--color-bg);
+}
+
+/* Ghost — low-weight, surface background */
+.scta__cta-ghost {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.scta__cta-ghost:hover {
+    border-color: var(--brand-violet);
+    color: var(--brand-violet);
+    background-color: var(--color-bg);
+}
+
+/* Licence text link — sits after the buttons, visually lighter */
+.scta__cta-text {
+    font-family: var(--font-family-ui);
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-link);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+    /* Force onto its own line so the three buttons stay grouped */
+    flex-basis: 100%;
+    margin-top: 0.25rem;
+}
+
+.scta__cta-text:hover {
+    border-bottom-color: var(--color-link);
+    color: var(--color-link);
+}
+
+/* ─── Scroll reveal ──────────────────────────────────────────────────────────── */
+
+.scroll-reveal {
+    will-change: opacity, transform;
+    transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--delay, 0ms);
+}
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.reveal-up.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 650px) {
+    .scta__ctas {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .scta__cta-text {
+        flex-basis: auto;
+        margin-top: 0;
+    }
+    .scta__band {
+        padding-top: 6vh;
+        padding-bottom: 6vh;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal { transition: none; }
+    .reveal-up     { opacity: 1; transform: none; }
+}

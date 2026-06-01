@@ -1,0 +1,112 @@
+/* ─── Section 5: Four Properties. No Compromise. ───────────────────────────── */
+
+.s5__section {
+    margin-top: 8vh;
+    margin-bottom: 4vh;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────────── */
+
+.s5__header {
+    margin-bottom: 3rem;
+}
+
+.s5__title {
+    margin-bottom: 0;
+    /* Intentionally left-aligned — consistent with S2 and S3 */
+}
+
+/* ── 2×2 pillar grid ─────────────────────────────────────────────────────────── */
+
+.s5__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+/* Gradient-border wrapper — mirrors S3 card border pattern */
+.s5__card-border {
+    background-image: var(--gradient-bar);
+    border-radius: 12px;
+    padding: 2px;
+    height: 100%;
+}
+
+/* Inner card */
+.s5__card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.75rem;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.s5__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.1);
+}
+
+/* Pillar number — acts as a visual anchor, styled like the S3 eyebrow */
+.s5__card-number {
+    display: block;
+    color: var(--brand-orange);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.s5__card-title {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: var(--font-size-h3);
+}
+
+.s5__card-body {
+    font-size: 0.97rem;
+    line-height: 1.65;
+    color: var(--color-text);
+    opacity: 0.82;
+    margin: 0;
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+/* ─── Shared scroll-reveal (mirrors sections 2, 3, 4) ───────────────────────── */
+
+.scroll-reveal {
+    will-change: opacity, transform;
+    transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--delay, 0ms);
+}
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.reveal-up.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 750px) {
+    .s5__grid {
+        grid-template-columns: 1fr;
+    }
+    .s5__card {
+        padding: 1.5rem 1.25rem;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal { transition: none; }
+    .reveal-up     { opacity: 1; transform: none; }
+}

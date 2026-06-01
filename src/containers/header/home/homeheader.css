@@ -1,17 +1,25 @@
 .docwire__header {
     margin-top: 0;
-    padding: 1rem 0 2rem;
-    text-align: center;
+    padding: 1rem 0 0rem;
+    text-align: left;
 }
 
 .docwire__header-h1 {
     font-size: 2.9rem;
     line-height: 1.05;
-    margin-bottom: 0.8rem;
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
     margin-bottom: 2rem;
+    animation: heroFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .docwire__header-content {
@@ -24,9 +32,9 @@
 }
 
 .docwire__header-text {
-    flex: 0 1 50%;
+    flex: 0 1 60%;
     text-align: left;
-    transform: translateY(50px);
+    animation: heroFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
 }
 
 .docwire__header-description {
@@ -54,11 +62,55 @@
     color: var(--color-bg);
 }
 
+/* ── Release button with version badge ───────────────────────────────────────── */
+
+.docwire__release-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--brand-violet);
+    color: var(--brand-white);
+    border: none;
+}
+
+.docwire__release-btn:hover {
+    opacity: 0.88;
+    transform: scale(1.05);
+    color: var(--brand-white);
+}
+
+/* Version chip — darker inset, sits flush left inside the pill */
+.docwire__release-badge {
+    background-color: rgba(0, 0, 0, 0.28);
+    color: var(--brand-white);
+    font-family: var(--font-family-code);
+    font-size: 0.78rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.03em;
+    padding: 0 0.8rem;
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    min-height: 2.4rem;
+    white-space: nowrap;
+}
+
+/* "Latest Release" label */
+.docwire__release-label {
+    padding: 0.5rem 1.1rem;
+    color: var(--brand-white);
+    font-family: var(--font-family-ui);
+    font-weight: var(--font-weight-semibold);
+}
+
 .docwire__hero-slideshow {
-    flex: 0 1 50%;
+    flex: 0 1 45%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .docwire__hero-slideshow_track {
@@ -68,16 +120,10 @@
     height: 440px;
     border-radius: 18px;
     overflow: hidden;
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(102, 0, 204, 0.18),
-            transparent 70%
-        );
-
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.25);
+    background-color: var(--color-surface);
+    border: 1px solid rgba(128, 128, 128, 0.12);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    animation: heroFadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
 }
 
 .docwire__hero-slide {
@@ -151,7 +197,7 @@
     .docwire__header-text {
         flex: 1 1 auto;
         text-align: center;
-        transform: none;
+        animation: none;
     }
     .docwire__header-ctas {
         justify-content: center;
@@ -165,10 +211,11 @@
     .docwire__hero-slideshow_track {
         height: 360px;
         max-width: 460px;
+        animation: none;
     }
     .docwire__header-h1 {
         font-size: 2.5rem;
-        max-width: 12ch;
+        animation: none;
     }
 }
 
@@ -182,5 +229,14 @@
     .docwire__hero-slideshow_track {
         height: 280px;
         max-width: 100%;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .docwire__header-h1,
+    .docwire__header-text,
+    .docwire__hero-slideshow_track {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 }

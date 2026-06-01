@@ -121,9 +121,28 @@ const config = {
         ],
       },
       footer: {
+        logo: {
+          alt: 'DocWire SDK',
+          src: 'img/LogoFrame_Black.png',
+          srcDark: 'img/LogoFrame_White.png',
+          href: '/',
+          width: 120,
+        },
         links: [
           {
             items: [
+              {
+                label: 'Use Cases',
+                to: '/showcases',
+              },
+              {
+                label: 'Commercial Licence',
+                to: '/contact-us?subject=Commercial+Licence+Enquiry',
+              },
+              {
+                label: 'LTS Agreements',
+                to: '/contact-us?subject=LTS+Agreement+Enquiry',
+              },
               {
                 label: 'Privacy Policy',
                 to: '/privacy',
@@ -143,7 +162,7 @@ const config = {
             ],
           },
         ],
-        copyright: `© DocWire SDK<br/>© SILVERCODERS Ltd.`,
+        copyright: `<p class="footer__tagline">The data processing foundation for teams who cannot afford to guess.</p>© DocWire SDK &nbsp;·&nbsp; © Silvercoders Ltd &nbsp;·&nbsp; © DocWire LLC &nbsp;·&nbsp; All rights reserved.`,
       },
       prism: {
         theme: lightCodeTheme,

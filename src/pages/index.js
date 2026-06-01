@@ -5,13 +5,14 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 // Ensure you have moved your 'containers' folder to 'src/containers'
 // or update this path to where your components are located.
 import {
-    WingsSection,
-    UnlockThePower,
-    HomeHaveYouEver,
+    Section6,
+    Section5,
+    Section2,
     CTA,
     HomeHeader,
-    SupportedFormats,
-    ClientsBanner
+    Section4,
+    ClientsBanner,
+    Section3, SectionCTA
 } from "../containers";
 
 export default function Home() {
@@ -24,10 +25,12 @@ export default function Home() {
         {/* Nav is handled by Docusaurus Layout */}
         <HomeHeader/>
         <ClientsBanner />
-        <HomeHaveYouEver/>
-        <SupportedFormats/>
-        <UnlockThePower/>
-        <WingsSection/>
+        <Section2/>
+        <Section3 />
+        <Section4/>
+        <Section5/>
+        <Section6/>
+        <SectionCTA />
         {/* Footer is handled by Docusaurus Layout */}
       </main>
     </Layout>

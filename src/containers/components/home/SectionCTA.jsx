@@ -1,4 +1,4 @@
-import "./sectionCTA.css";
+import "./sectioncta.css";
 import React, { useEffect, useRef } from "react";
 import Link from '@docusaurus/Link';
 

@@ -16,4 +16,4 @@ Two additional fixes come with this: MIME type normalization now standardizes le
 Test Infrastructure
 The monolithic api_tests.cpp has been split into focused files (core_tests.cpp, error_tests.cpp, log_tests.cpp, etc.), and all unit tests now run from a single docwire_tests binary. The practical effect is significantly reduced overhead during full test cycles under Valgrind.
 
-[Full release notes](github.com/docwire/docwire/releases/tag/2026.05.25)
+[Full release notes](https://github.com/docwire/docwire/releases/tag/2026.05.25)

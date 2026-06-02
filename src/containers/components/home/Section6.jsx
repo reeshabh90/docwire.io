@@ -17,7 +17,7 @@ const properties = [
     },
     {
         label: "Open-source core",
-        detail: "Apache 2.0 licensed core. Commercial licence available for closed-source deployment. No lock-in.",
+        detail: "AGPLv3 licensed core. Commercial licence available for closed-source deployment. No lock-in.",
     },
     {
         label: "LTS available",

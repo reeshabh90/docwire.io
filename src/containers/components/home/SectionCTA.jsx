@@ -36,7 +36,7 @@ function SectionCTA() {
 
                 <div ref={bodyRef} className="scta__body scroll-reveal reveal-up" style={{ "--delay": "80ms" }}>
                     <p>
-                        DocWire SDK is available as open-source under GPLv2, or under a commercial
+                        DocWire SDK is available as open-source under AGPLv3, or under a commercial
                         licence for proprietary deployments. Long-Term Support agreements are available
                         for teams that need API stability across multi-year programmes.
                     </p>

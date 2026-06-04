@@ -94,7 +94,7 @@ function HomeHeader() {
 
                     <p className="docwire__header-description">
                         DocWire is a foundation layer for modern information workflows,
-                        enabling deterministic processing of unstructured data at scale.
+                        enabling deterministic extraction, retrieval and processing of unstructured data at scale.
                         With support for 100+ file formats, built-in OCR, and secure AI integration,
                         it transforms documents into reliable, searchable, and editable data
                         for extraction, retrieval, and inference pipelines. 

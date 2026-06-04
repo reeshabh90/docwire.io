@@ -10,7 +10,7 @@ const pillars = [
     {
         number: "02",
         title: "Auditable by design",
-        body: "Every extraction is traceable to its source — document, field, value. Security teams and compliance auditors can verify exactly how data was handled at every step. Because DocWire's pipelines are mathematically rigorous and open-source, there is no black box to hide behind when a regulator asks questions.",
+        body: "Every extraction is traceable to its source — document, field, value. Security teams and compliance auditors can verify exactly how data was handled at every step. Because DocWire's pipelines are mathematically rigorous and open-source, traceability is not an issue for regulatory compliance.",
     },
     {
         number: "03",

@@ -8,7 +8,7 @@ const capabilities = [
         label: "Local AI Models",
         summary: "Fully on-premise inference",
         description:
-            "Built-in flan-t5-large and multilingual-e5-small models run without any cloud dependency. Classification, summarisation, translation, entity extraction, and embedding — no API calls, no data egress.",
+            "Built-in local models run without any cloud dependency. Classification, summarisation, translation, entity extraction, and embedding — no API calls, no data egress.",
     },
     {
         id: "openai",

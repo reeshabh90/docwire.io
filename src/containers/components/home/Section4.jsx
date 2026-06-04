@@ -1,24 +1,22 @@
 import './section4.css';
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { formatGroups } from '../../../data/supportedFormatsData';
 
 const VISIBLE = 3;
-const INTERVAL_MS = 3500;
 
 function Section4() {
     const [startIndex, setStartIndex] = useState(0);
-    const [paused, setPaused] = useState(false);
-    const [trackKey, setTrackKey] = useState(0);
+    const [trackKey, setTrackKey]     = useState(0);
     const total = formatGroups.length;
 
-    const headerRef = useRef(null);
+    const headerRef   = useRef(null);
     const carouselRef = useRef(null);
-    const dotsRef = useRef(null);
+    const dotsRef     = useRef(null);
 
     // ── Scroll-reveal ─────────────────────────────────────────────────────────
     useEffect(() => {
         const targets = [headerRef.current, carouselRef.current, dotsRef.current].filter(Boolean);
-        if (targets.length === 0) return;
+        if (!targets.length) return;
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -34,23 +32,11 @@ function Section4() {
         return () => observer.disconnect();
     }, []);
 
-    // ── Navigation ────────────────────────────────────────────────────────────
-    const advance = useCallback((dir) => {
-        setStartIndex((p) => (p + dir + total) % total);
+    // ── Navigation — one function handles both arrows and dot clicks ──────────
+    const navigateTo = (index) => {
+        setStartIndex((index + total) % total);
         setTrackKey((k) => k + 1);
-    }, [total]);
-
-    const next = useCallback(() => advance(1), [advance]);
-    const prev = useCallback(() => advance(-1), [advance]);
-
-    const goTo = (i) => { setStartIndex(i); setTrackKey((k) => k + 1); };
-
-    // ── Auto-advance ──────────────────────────────────────────────────────────
-    useEffect(() => {
-        if (paused) return;
-        const t = setInterval(next, INTERVAL_MS);
-        return () => clearInterval(t);
-    }, [paused, next]);
+    };
 
     // ── Visible window ────────────────────────────────────────────────────────
     const visibleCards = Array.from({ length: VISIBLE }, (_, i) =>
@@ -58,10 +44,6 @@ function Section4() {
     );
 
     return (
-        /*
-          s4__band   — full-width tinted strip + top separator rule
-          s4__section — max-width container (reuses .section utility via class)
-        */
         <div className="s4__band">
             <div className="s4__section section">
 
@@ -79,10 +61,12 @@ function Section4() {
                     ref={carouselRef}
                     className="s4__carousel scroll-reveal reveal-up"
                     style={{ "--delay": "120ms" }}
-                    onMouseEnter={() => setPaused(true)}
-                    onMouseLeave={() => setPaused(false)}
                 >
-                    <button className="s4__arrow" onClick={prev} aria-label="Previous formats">‹</button>
+                    <button
+                        className="s4__arrow"
+                        onClick={() => navigateTo(startIndex - 1)}
+                        aria-label="Previous formats"
+                    >‹</button>
 
                     <div key={trackKey} className="s4__track">
                         {visibleCards.map((group) => (
@@ -97,7 +81,11 @@ function Section4() {
                         ))}
                     </div>
 
-                    <button className="s4__arrow" onClick={next} aria-label="Next formats">›</button>
+                    <button
+                        className="s4__arrow"
+                        onClick={() => navigateTo(startIndex + 1)}
+                        aria-label="Next formats"
+                    >›</button>
                 </div>
 
                 {/* Dots + counter */}
@@ -114,7 +102,7 @@ function Section4() {
                                 aria-selected={i === startIndex}
                                 aria-label={`Format group ${i + 1}`}
                                 className={`s4__dot${i === startIndex ? " active" : ""}`}
-                                onClick={() => goTo(i)}
+                                onClick={() => navigateTo(i)}
                             />
                         ))}
                     </div>

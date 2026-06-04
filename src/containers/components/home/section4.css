@@ -1,0 +1,253 @@
+/* ─── Section 4: 100+ Formats. Zero Approximations. ────────────────────────── */
+
+/*
+  Two-layer structure:
+    s4__band     — full-viewport-width tinted strip; owns the background + separator
+    s4__section  — max-width inner container (also gets .section utility class)
+
+  This lets the tinted band bleed edge-to-edge while keeping content
+  aligned with the left-aligned sections above it.
+*/
+
+/* ── Full-width band ─────────────────────────────────────────────────────────── */
+
+.s4__band {
+    width: 100vw;
+    /* Pull out of the parent's padding/margin without JS */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: 6vh;
+
+    background-color: var(--color-surface);
+
+    /* Top separator: a 1px rule that fades in from the brand gradient */
+    border-top: 1px solid transparent;
+    background-image:
+        /* gradient rule drawn along the top edge */
+        linear-gradient(var(--color-surface), var(--color-surface)),
+        var(--gradient-bar);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    padding-top: 6vh;
+    padding-bottom: 6vh;
+}
+
+/* ── Inner container ─────────────────────────────────────────────────────────── */
+
+.s4__section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* .section utility provides max-width + horizontal centering */
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────────── */
+
+.s4__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    max-width: 640px;
+    width: 100%;
+}
+
+.s4__title {
+    margin-bottom: 1rem;
+}
+
+.s4__subtitle {
+    color: var(--color-text);
+    margin-bottom: 0;
+    opacity: 0.85;
+}
+
+/* ── Carousel wrapper ────────────────────────────────────────────────────────── */
+
+.s4__carousel {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.s4__arrow {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: 2px solid var(--brand-violet);
+    border-radius: 50%;
+    color: var(--brand-violet);
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    padding: 0;
+    align-self: center;
+}
+
+.s4__arrow:hover {
+    background: var(--brand-violet);
+    color: var(--brand-white);
+    transform: scale(1.08);
+}
+
+/* ── Card track ──────────────────────────────────────────────────────────────── */
+
+.s4__track {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    animation: s4FadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes s4FadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Gradient-border wrapper */
+.s4__card-border {
+    background-image: var(--gradient-bar);
+    border-radius: 12px;
+    padding: 2px;
+    height: 100%;
+}
+
+/* Inner card — background matches the band so it reads as "cut out" */
+.s4__card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border-radius: 10px;
+    background-color: var(--color-surface);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.s4__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.1);
+}
+
+.s4__card-icon {
+    color: var(--icon-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.s4__card-name {
+    margin-top: 0;
+    margin-bottom: 0.4em;
+}
+
+.s4__card-formats {
+    color: var(--icon-color);
+    font-weight: 500;
+    font-size: 0.88rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    word-break: break-word;
+    font-family: var(--font-family-ui);
+    letter-spacing: 0.02em;
+}
+
+.s4__card-description {
+    color: var(--color-text);
+    opacity: 0.82;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: auto;
+    padding-top: 1em;
+    margin-bottom: 0;
+}
+
+/* ── Dots + counter ──────────────────────────────────────────────────────────── */
+
+.s4__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.75rem;
+}
+
+.s4__dots {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.s4__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-bg); /* slightly lighter than band bg */
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.s4__dot.active {
+    background: var(--brand-violet);
+    transform: scale(1.3);
+}
+
+.s4__dot:hover {
+    background: var(--brand-orange);
+}
+
+.s4__counter {
+    font-size: 0.875rem;
+    color: var(--color-subtext);
+    margin: 0;
+}
+
+/* ─── Scroll-reveal (mirrors sections 2 & 3) ─────────────────────────────────── */
+
+.scroll-reveal {
+    will-change: opacity, transform;
+    transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--delay, 0ms);
+}
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.reveal-up.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 900px) {
+    .s4__header { max-width: 100%; }
+    .s4__track  { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media screen and (max-width: 750px) {
+    .s4__band   { margin-top: 4vh; padding-top: 5vh; padding-bottom: 5vh; }
+    .s4__track  { grid-template-columns: 1fr; }
+    .s4__arrow  { width: 36px; height: 36px; font-size: 1.4rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal { transition: none; }
+    .reveal-up     { opacity: 1; transform: none; }
+    .s4__track     { animation: none; }
+}

@@ -8,71 +8,86 @@ import {
     BsArchive,
     BsCodeSlash,
     BsDatabase,
-    BsFileEarmarkPdf
+    BsFileEarmarkPdf,
+    BsHospital,
 } from "react-icons/bs";
 
 export const formatGroups = [
     {
-        groupName: "Microsoft Office",
-        icon: BsMicrosoft,
-        formats: [
-            "DOCX", "XLSX", "PPTX",
-            "DOC", "XLS", "XLSB", "PPT", "RTF"
-        ],
-        description: "Office Open XML, legacy binary formats, and RTF."
+        groupName: "Medical",
+        icon: BsHospital,
+        formats: ["DICOM (DCM)", "HL7"],
+        description:
+            "Production-tested parsing for healthcare data formats. DICOM scan metadata extraction and HL7 message segment traversal — validated for HIPAA-regulated environments.",
     },
     {
-        groupName: "OpenOffice/LibreOffice",
+        groupName: "Email & Mailboxes",
+        icon: BsEnvelope,
+        formats: ["PST", "OST", "EML"],
+        description:
+            "Full Outlook mailbox traversal including PST and OST archives. EML with nested attachments parsed recursively — complete email chain reconstruction.",
+    },
+    {
+        groupName: "Microsoft Office",
+        icon: BsMicrosoft,
+        formats: ["DOCX", "XLSX", "PPTX", "DOC", "XLS", "XLSB", "PPT", "RTF"],
+        description:
+            "Office Open XML and legacy binary formats. Tables, embedded objects, and metadata extracted with full fidelity — including XLSB binary workbooks.",
+    },
+    {
+        groupName: "OpenOffice / LibreOffice",
         icon: BsFileEarmarkText,
         formats: ["ODT", "ODS", "ODP"],
-        description: "Open Document Format (ODF)."
+        description:
+            "Complete support for the ISO-standard Open Document Format used across LibreOffice, OpenOffice, and government document systems worldwide.",
+    },
+    {
+        groupName: "PDF",
+        icon: BsFileEarmarkPdf,
+        formats: ["PDF"],
+        description:
+            "Native PDF parsing with layout reconstruction. Handles encrypted, malformed, and multi-column documents. OCR fallback for scanned pages with full metadata extraction.",
     },
     {
         groupName: "Web",
         icon: BsGlobe,
         formats: ["HTML", "HTM", "CSS"],
-        description: "Standard web page formats."
+        description:
+            "Structure-aware HTML parsing that strips boilerplate and preserves semantic hierarchy — handles malformed markup without pipeline failure.",
     },
     {
-        groupName: "Portable Document Format",
-        icon: BsFileEarmarkPdf,
-        formats: ["PDF"],
-        description: "With OCR of embedded images."
-    },
-    {
-        groupName: "Email",
-        icon: BsEnvelope,
-        formats: ["EML", "PST", "OST"],
-        description: "Email files and Microsoft Outlook archives, including attachments."
-    },
-    {
-        groupName: "Images (OCR)",
+        groupName: "Images & OCR",
         icon: BsCardImage,
         formats: ["JPG", "JPEG", "JFIF", "BMP", "PNM", "PNG", "TIFF", "WEBP"],
-        description: "With OCR capabilities in over 100 languages."
+        description:
+            "Built-in OCR engine in over 100 languages. Converts scanned images and embedded raster content into machine-readable text with skew correction.",
     },
     {
         groupName: "Apple iWork",
         icon: BsApple,
         formats: ["PAGES", "NUMBERS", "KEY"],
-        description: "Apple's office suite formats."
+        description:
+            "Full extraction from Apple's office suite formats — documents, spreadsheets, and presentations — without requiring macOS or iCloud.",
     },
     {
         groupName: "Archives",
         icon: BsArchive,
         formats: ["ZIP", "TAR", "RAR", "GZ", "BZ2", "XZ"],
-        description: "Common compressed archive formats."
+        description:
+            "Recursive archive traversal — unpacks nested containers and processes every file within, regardless of depth. No pre-extraction step required.",
     },
     {
         groupName: "Source Code",
         icon: BsCodeSlash,
         formats: ["C", "CPP", "CS", "JAVA", "JS", "PHP", "PY", "GO", "and more"],
-        description: "A wide variety of programming and script files."
+        description:
+            "Syntax-aware extraction from a wide variety of programming and script files — for code search, licence scanning, IP auditing, and AI training pipelines.",
     },
     {
-        groupName: "Structured Data & Other",
+        groupName: "Structured Data",
         icon: BsDatabase,
-        formats: ["XML", "CSV", "JSON", "YAML", "ODFXML", "MD", "LOG", "DCM"],
-        description: "Data interchange, config, logs, and medical images (commercial)."
-    }
+        formats: ["XML", "CSV", "JSON", "YAML", "ODFXML", "MD", "LOG"],
+        description:
+            "Schema-tolerant parsing for tabular and hierarchical data formats. Handles inconsistent delimiters, nested structures, and malformed records without failure.",
+    },
 ];
